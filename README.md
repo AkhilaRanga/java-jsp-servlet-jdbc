@@ -9,7 +9,7 @@ A simple Java web application to add and search employees using JSP, Servlets, J
 	- Maven: `3.9.10`
 	- MySQL: `9.3.0`
 	- MySQL Workbench: `8.0.42` (cask)
-	- Tomcat: `11.0.8` (bottled)
+	- Tomcat: `11.0.8`
 	- Eclipse JEE IDE: `4.36.0` (cask)
 
 ### 2. How Maven Project Was Created & Run
@@ -20,6 +20,7 @@ The project was created using Eclipse IDE Maven project wizard. The archetype se
 - Group Id: org.apache.maven.archetypes
 - Artifact Id: maven-archetype-webapp
 - Version 1.5
+
 Also added `mysql-connector-j` dependency to pom.xml
 
 #### ▶️ Running the App
@@ -42,10 +43,12 @@ Steps needed to run the App
 | Architecture | MVC             |
 
 ### 4. Screenshots of the Web App
-<img src="screenshots/search_employees.png" alt="Login Screenshot" width="500">
-<img src="screenshots/add_employee.png" alt="Login Screenshot" width="500">
-<img src="screenshots/add_employee_success.png" alt="Login Screenshot" width="500">
-<img src="screenshots/search_employees_success.png" alt="Login Screenshot" width="500">
+<img src="screenshots/search_employees.png" alt="Login Screenshot" width="500" style="border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
+<br>
+<img src="screenshots/add_employee.png" alt="Login Screenshot" width="500" style="border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
+<img src="screenshots/add_employee_success.png" alt="Login Screenshot" width="500" style="border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
+<img src="screenshots/search_employees_success.png" alt="Login Screenshot" width="500" style="border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
+<img src="screenshots/search_employees_empty.png" alt="Login Screenshot" width="500" style="border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
 
 
 ### 5. Folder structure

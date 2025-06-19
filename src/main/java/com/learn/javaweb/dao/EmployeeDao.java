@@ -24,10 +24,27 @@ public class EmployeeDao {
 		ArrayList<Employee> employees = new ArrayList<>();
 		connect();
 		
-        String sql = "SELECT * FROM employees WHERE first_name LIKE ? OR last_name LIKE ?";
+        String sql;
+        if ((firstName == null || firstName.isEmpty()) && (lastName == null || lastName.isEmpty())) {
+            sql = "SELECT * FROM employees";
+        } else {
+            sql = "SELECT * FROM employees WHERE 1=0";
+            if (firstName != null && !firstName.isEmpty()) {
+                sql += " OR first_name LIKE ?";
+            }
+            if (lastName != null && !lastName.isEmpty()) {
+                sql += " OR last_name LIKE ?";
+            }
+        }
+        
         PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setString(1, "%" + firstName + "%");
-        stmt.setString(2, "%" + lastName + "%");
+        int paramIndex = 1;
+        if (firstName != null && !firstName.isEmpty()) {
+            stmt.setString(paramIndex++, "%" + firstName.trim() + "%");
+        }
+        if (lastName != null && !lastName.isEmpty()) {
+            stmt.setString(paramIndex++, "%" + lastName.trim() + "%");
+        }
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()) {
