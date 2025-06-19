@@ -43,12 +43,11 @@ Steps needed to run the App
 | Architecture | MVC             |
 
 ### 4. Screenshots of the Web App
-<img src="screenshots/search_employees.png" alt="Login Screenshot" width="500" style="border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
-<br>
-<img src="screenshots/add_employee.png" alt="Login Screenshot" width="500" style="border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
-<img src="screenshots/add_employee_success.png" alt="Login Screenshot" width="500" style="border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
-<img src="screenshots/search_employees_success.png" alt="Login Screenshot" width="500" style="border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
-<img src="screenshots/search_employees_empty.png" alt="Login Screenshot" width="500" style="border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
+<kbd><img src="screenshots/search_employees.png" alt="Login Screenshot" width="500"></kbd>
+<kbd><img src="screenshots/add_employee.png" alt="Login Screenshot" width="500"></kbd>
+<kbd><img src="screenshots/add_employee_success.png" alt="Login Screenshot" width="500"></kbd>
+<kbd><img src="screenshots/search_employees_success.png" alt="Login Screenshot" width="500"></kbd>
+<kbd><img src="screenshots/search_employees_empty.png" alt="Login Screenshot" width="500"></kbd>
 
 
 ### 5. Folder structure
