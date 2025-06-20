@@ -48,6 +48,7 @@ Steps needed to run the App
 <kbd><img src="screenshots/add_employee_success.png" alt="Login Screenshot" width="500"></kbd>
 <kbd><img src="screenshots/search_employees_success.png" alt="Login Screenshot" width="500"></kbd>
 <kbd><img src="screenshots/search_employees_empty.png" alt="Login Screenshot" width="500"></kbd>
+<kbd><img src="screenshots/add_employee_validation.png" alt="Login Screenshot" width="500"></kbd>
 
 
 ### 5. Folder structure

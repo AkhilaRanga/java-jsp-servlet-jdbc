@@ -3,6 +3,7 @@ package com.learn.javaweb.controller;
 import java.io.IOException;
 
 import com.learn.javaweb.dao.EmployeeDao;
+import com.learn.javaweb.util.EmployeeValidator;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,10 +22,25 @@ public class AddEmployeeServlet extends HttpServlet {
 			String firstName = request.getParameter("firstName");
 	        String lastName = request.getParameter("lastName");
             String job = request.getParameter("job");
-            int age = Integer.parseInt(request.getParameter("age"));
+            String ageString = request.getParameter("age");
+            
+            EmployeeValidator validator = new EmployeeValidator();
+            validator
+            .validateRequired(firstName, "First name")
+            .validateCharLength(firstName, 100, "First name")
+            .validateRequired(lastName, "Last name")
+            .validateCharLength(lastName, 100, "Last name")
+            .validateEmployeeJob(job)
+            .validateIntInRange(ageString, 18, 80, "Age");
+
+			if (validator.hasErrors()) {
+			    request.setAttribute("errors", validator.getErrors());
+			    request.getRequestDispatcher("employee_form.jsp").forward(request, response);
+			    return;
+			}
 			
 			EmployeeDao employeeDao = new EmployeeDao();
-			int addEmployeeStatus = employeeDao.addEmployee(firstName, lastName, job, age);
+			int addEmployeeStatus = employeeDao.addEmployee(firstName, lastName, job, Integer.parseInt(ageString));
 
             response.sendRedirect(addEmployeeStatus > 0 ? "employee_form.jsp?success=true" : "employee_form.jsp?error=true");
 	}

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,6 +41,20 @@
 			<% } else if ("true".equals(request.getParameter("error"))) { %>
 			    <p class="text-center text-danger">Error adding employee. Please try again</p>
 			<% } %>
+			<%
+			    List<String> errors = (List<String>) request.getAttribute("errors");
+			    if (errors != null && !errors.isEmpty()) {
+			%>
+			    <div class="alert alert-danger text-center" role="alert">
+			        <ul class="mb-0 list-unstyled">
+			        <% for (String error : errors) { %>
+			            <li><%= error %></li>
+			        <% } %>
+			        </ul>
+			    </div>
+			<%
+			    }
+			%>
 	</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
