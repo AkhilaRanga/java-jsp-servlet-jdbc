@@ -38,7 +38,7 @@
 
 			<% if ("true".equals(request.getParameter("success"))) { %>
 			    <p class="text-center text-success">Employee added successfully</p>
-			<% } else if ("true".equals(request.getParameter("error"))) { %>
+			<% } else if ("false".equals(request.getParameter("success"))) { %>
 			    <p class="text-center text-danger">Error adding employee. Please try again</p>
 			<% } %>
 			<%

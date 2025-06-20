@@ -14,6 +14,24 @@ import java.io.IOException;
 @WebServlet("/addEmployee")
 public class AddEmployeeServlet extends HttpServlet {
     private static final long serialVersionUID = -1702450857190071820L;
+    private EmployeeDao employeeDao;
+    private volatile String initErrorMessage;
+
+    @Override
+    public void init() {
+        try {
+            employeeDao = new EmployeeDao();
+        } catch (Exception e) {
+            System.out.println("Failed to add employee due to DB connection error: " + e);
+            initErrorMessage = "Failed to add employee due to DB connection error";
+        }
+    }
+
+    // For test use
+    public void setEmployeeDao(EmployeeDao dao) {
+        this.employeeDao = dao;
+        this.initErrorMessage = null;
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,16 +55,21 @@ public class AddEmployeeServlet extends HttpServlet {
             return;
         }
 
-        EmployeeDao employeeDao = new EmployeeDao();
-        int addEmployeeStatus =
-                employeeDao.addEmployee(firstName, lastName, job, Integer.parseInt(ageString));
+        if (initErrorMessage == null) {
+            int addEmployeeStatus =
+                    this.employeeDao.addEmployee(
+                            firstName, lastName, job, Integer.parseInt(ageString));
 
-        if (addEmployeeStatus > 0) {
-            response.sendRedirect("employee_form.jsp?success=true");
+            if (addEmployeeStatus > 0) {
+                response.sendRedirect("employee_form.jsp?success=true");
+            } else {
+                request.setAttribute("success", false);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("employee_form.jsp");
+                dispatcher.forward(request, response);
+            }
         } else {
-            request.setAttribute("success", false);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("employee_form.jsp");
-            dispatcher.forward(request, response);
+            response.getWriter()
+                    .println("<p class='text-center text-danger'>" + initErrorMessage + "</p>");
         }
     }
 }

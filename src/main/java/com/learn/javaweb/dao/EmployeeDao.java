@@ -10,9 +10,18 @@ import java.util.ArrayList;
 public class EmployeeDao {
     Connection conn = null;
 
+    public EmployeeDao() throws Exception {
+        connect();
+    }
+
+    // For test use
+    public EmployeeDao(Connection conn) {
+        this.conn = conn;
+    }
+
     public void connect() throws Exception {
         try {
-            conn = DBUtils.getConnection();
+            this.conn = DBUtils.getConnection();
         } catch (Exception e) {
             System.out.println("Exception connecting to MySQL DB: " + e);
             throw e;
@@ -21,7 +30,6 @@ public class EmployeeDao {
 
     public ArrayList<Employee> getEmployees(String firstName, String lastName) throws Exception {
         ArrayList<Employee> employees = new ArrayList<>();
-        connect();
 
         String sql;
         if ((firstName == null || firstName.isEmpty())
@@ -37,7 +45,7 @@ public class EmployeeDao {
             }
         }
 
-        PreparedStatement stmt = conn.prepareStatement(sql);
+        PreparedStatement stmt = this.conn.prepareStatement(sql);
         int paramIndex = 1;
         if (firstName != null && !firstName.isEmpty()) {
             stmt.setString(paramIndex++, "%" + firstName.trim() + "%");
@@ -61,10 +69,9 @@ public class EmployeeDao {
 
     public int addEmployee(String firstName, String lastName, String job, int age) {
         try {
-            connect();
             String sql =
                     "INSERT INTO employees (first_name, last_name, job, age) VALUES (?, ?, ?, ?)";
-            PreparedStatement stmt = conn.prepareStatement(sql);
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setString(1, firstName);
             stmt.setString(2, lastName);
             stmt.setString(3, job);

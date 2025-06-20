@@ -21,8 +21,6 @@ The project was created using Eclipse IDE Maven project wizard. The archetype se
 - Artifact Id: maven-archetype-webapp
 - Version 1.5
 
-Also added `mysql-connector-j` dependency to pom.xml
-
 #### ▶️ Running the App
 
 Steps needed to run the App

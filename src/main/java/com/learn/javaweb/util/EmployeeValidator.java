@@ -37,7 +37,7 @@ public class EmployeeValidator {
                 || !(jobValue.equals("DEVELOPER")
                         || jobValue.equals("MANAGER")
                         || jobValue.equals("DIRECTOR"))) {
-            errors.add("Job must be DEVELOPER, MANAGER, or DIRECTOR.");
+            errors.add("Job must be DEVELOPER, MANAGER, or DIRECTOR");
         }
         return this;
     }
