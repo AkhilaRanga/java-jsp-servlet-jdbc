@@ -14,11 +14,11 @@
 			<form action="addEmployee" method="post" class="mb-4">
 		        <div class="mb-3">
 		            <label for="firstName" class="form-label">First name:</label>
-		            <input type="text" class="form-control" name="firstName" required>
+		            <input type="text" class="form-control" name="firstName" required value="<%= request.getParameter("firstName") != null ? request.getParameter("firstName") : "" %>">
 		        </div>
 		        <div class="mb-3">
 		            <label for="lastName" class="form-label">Last name:</label>
-		            <input type="text" class="form-control" name="lastName" required>
+		            <input type="text" class="form-control" name="lastName" required value="<%= request.getParameter("lastName") != null ? request.getParameter("lastName") : "" %>">
 		        </div>
 		        <div class="mb-3">
 		            <label for="job" class="form-label">Job:</label>
@@ -30,7 +30,7 @@
 		        </div>
 		        <div class="mb-3">
 		            <label for="age" class="form-label">Age:</label>
-		            <input type="number" class="form-control" name="age" min="18" max="80" required>
+		            <input type="number" class="form-control" name="age" min="18" max="80" required value="<%= request.getParameter("age") != null ? request.getParameter("age") : "" %>">
 		        </div>
 			    <button type="submit" class="btn btn-outline-primary">Add employee</button>
 			    <button type="button" class="btn btn-outline-dark" onclick="window.location.href='index.jsp'">Back to search</button>

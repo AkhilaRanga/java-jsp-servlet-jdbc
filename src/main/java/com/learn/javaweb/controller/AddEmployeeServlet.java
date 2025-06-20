@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.learn.javaweb.dao.EmployeeDao;
 import com.learn.javaweb.util.EmployeeValidator;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -41,7 +42,13 @@ public class AddEmployeeServlet extends HttpServlet {
 			
 			EmployeeDao employeeDao = new EmployeeDao();
 			int addEmployeeStatus = employeeDao.addEmployee(firstName, lastName, job, Integer.parseInt(ageString));
-
-            response.sendRedirect(addEmployeeStatus > 0 ? "employee_form.jsp?success=true" : "employee_form.jsp?error=true");
+			
+			if (addEmployeeStatus > 0) {
+			    response.sendRedirect("employee_form.jsp?success=true");
+			} else {
+			    request.setAttribute("success", false);
+			    RequestDispatcher dispatcher = request.getRequestDispatcher("employee_form.jsp");
+			    dispatcher.forward(request, response);
+			}
 	}
 }

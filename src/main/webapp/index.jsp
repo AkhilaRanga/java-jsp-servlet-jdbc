@@ -14,11 +14,11 @@
 		<form action="getEmployees" method="get" class="mb-4">
 	        <div class="mb-3">
 	            <label for="firstName" class="form-label">Search by first name:</label>
-	            <input type="text" class="form-control" name="firstName">
+	            <input type="text" class="form-control" name="firstName" value="<%= request.getParameter("firstName") != null ? request.getParameter("firstName") : "" %>">
 	        </div>
 	        <div class="mb-3">
 	            <label for="lastName" class="form-label">Search by last name:</label>
-	            <input type="text" class="form-control" name="lastName">
+	            <input type="text" class="form-control" name="lastName" value="<%= request.getParameter("lastName") != null ? request.getParameter("lastName") : "" %>">
 	        </div>
 		    <button type="submit" class="btn btn-outline-dark">Search employees</button>
 			<button type="button" class="btn btn-outline-primary" onclick="window.location.href='employee_form.jsp'">Add new employee</button>
