@@ -33,7 +33,10 @@ public class EmployeeValidator {
     }
 
     public EmployeeValidator validateEmployeeJob(String jobValue) {
-        if (jobValue == null || !(jobValue.equals("DEVELOPER") || jobValue.equals("MANAGER") || jobValue.equals("DIRECTOR"))) {
+        if (jobValue == null
+                || !(jobValue.equals("DEVELOPER")
+                        || jobValue.equals("MANAGER")
+                        || jobValue.equals("DIRECTOR"))) {
             errors.add("Job must be DEVELOPER, MANAGER, or DIRECTOR.");
         }
         return this;

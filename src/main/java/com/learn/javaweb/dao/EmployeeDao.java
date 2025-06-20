@@ -1,31 +1,31 @@
 package com.learn.javaweb.dao;
 
+import com.learn.javaweb.model.Employee;
+import com.learn.javaweb.util.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
-import com.learn.javaweb.model.Employee;
-import com.learn.javaweb.util.DBUtils;
 
 public class EmployeeDao {
     Connection conn = null;
 
     public void connect() throws Exception {
         try {
-        	conn = DBUtils.getConnection();
+            conn = DBUtils.getConnection();
         } catch (Exception e) {
             System.out.println("Exception connecting to MySQL DB: " + e);
             throw e;
         }
     }
-    
-	public ArrayList<Employee> getEmployees(String firstName, String lastName) throws Exception {
-		ArrayList<Employee> employees = new ArrayList<>();
-		connect();
-		
+
+    public ArrayList<Employee> getEmployees(String firstName, String lastName) throws Exception {
+        ArrayList<Employee> employees = new ArrayList<>();
+        connect();
+
         String sql;
-        if ((firstName == null || firstName.isEmpty()) && (lastName == null || lastName.isEmpty())) {
+        if ((firstName == null || firstName.isEmpty())
+                && (lastName == null || lastName.isEmpty())) {
             sql = "SELECT * FROM employees";
         } else {
             sql = "SELECT * FROM employees WHERE 1=0";
@@ -36,7 +36,7 @@ public class EmployeeDao {
                 sql += " OR last_name LIKE ?";
             }
         }
-        
+
         PreparedStatement stmt = conn.prepareStatement(sql);
         int paramIndex = 1;
         if (firstName != null && !firstName.isEmpty()) {
@@ -57,12 +57,13 @@ public class EmployeeDao {
             employees.add(employee);
         }
         return employees;
-	}
+    }
 
     public int addEmployee(String firstName, String lastName, String job, int age) {
         try {
-    		connect();
-            String sql = "INSERT INTO employees (first_name, last_name, job, age) VALUES (?, ?, ?, ?)";
+            connect();
+            String sql =
+                    "INSERT INTO employees (first_name, last_name, job, age) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, firstName);
             stmt.setString(2, lastName);

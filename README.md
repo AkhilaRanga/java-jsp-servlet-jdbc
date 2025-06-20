@@ -71,3 +71,9 @@ java-jsp-servlet-jdbc/
 └── screenshots/
 ```
 
+### 5. Maven commands
+```
+mvn clean install
+mvn checkstyle:check
+mvn spotless:apply
+```
