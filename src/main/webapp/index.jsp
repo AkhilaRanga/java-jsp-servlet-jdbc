@@ -47,7 +47,9 @@
 		    </table>
 		<% } else if (employees != null) { %>
 		    <h3 class="text-center h3">Results:</h3>
-		    <p class="text-center">No matching employees found</p>
+			<div class="alert alert-secondary text-center" role="alert">
+		    	No matching employees found
+		    </div>
 		<% } %>
 	</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
