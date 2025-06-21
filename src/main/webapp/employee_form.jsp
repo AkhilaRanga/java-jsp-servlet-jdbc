@@ -37,9 +37,13 @@
 			</form>
 
 			<% if ("true".equals(request.getParameter("success"))) { %>
-			    <p class="text-center text-success">Employee added successfully</p>
+			    <div class="alert alert-success text-center" role="alert">
+			    	Employee added successfully
+			    </div>
 			<% } else if ("false".equals(request.getParameter("success"))) { %>
-			    <p class="text-center text-danger">Error adding employee. Please try again</p>
+			    <div class="alert alert-danger text-center" role="alert">
+			    	Error adding employee. Please try again
+			    </div>
 			<% } %>
 			<%
 			    List<String> errors = (List<String>) request.getAttribute("errors");
